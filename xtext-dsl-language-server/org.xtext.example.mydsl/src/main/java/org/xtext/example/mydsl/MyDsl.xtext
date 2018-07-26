@@ -1,0 +1,36 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Extent:
+	modules+=Module*;
+	
+Module:
+	TerminologyGraph;
+
+TerminologyGraph: 
+	'terminology' iri=ID
+	'{'
+	( boxStatements+=TerminologyBoxStatement )*
+	'}';
+
+TerminologyBoxStatement:
+	Entity |
+	Relation ;
+
+Entity:
+	Aspect |
+	Concept;
+
+Aspect:
+	'aspect' name=ID;
+
+Concept:
+	'concept' name=ID;
+
+Relation:
+	'relation' name=ID '{' 
+		'source' '=' source=[Entity]
+		'target' '=' target=[Entity]
+	'}';
+

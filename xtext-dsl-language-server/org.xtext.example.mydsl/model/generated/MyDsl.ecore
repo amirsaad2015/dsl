@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="myDsl" nsURI="http://www.xtext.org/example/mydsl/MyDsl" nsPrefix="myDsl">
+  <eClassifiers xsi:type="ecore:EClass" name="Extent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modules" upperBound="-1"
+        eType="#//Module" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Module"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TerminologyGraph" eSuperTypes="#//Module">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="boxStatements" upperBound="-1"
+        eType="#//TerminologyBoxStatement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TerminologyBoxStatement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" eSuperTypes="#//TerminologyBoxStatement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Aspect" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Concept" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//TerminologyBoxStatement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Entity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Entity"/>
+  </eClassifiers>
+</ecore:EPackage>
